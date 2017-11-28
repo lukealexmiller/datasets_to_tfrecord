@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Specify data root and Syno mount point
-DATA_ROOT='root/data/mscoco'
+DATA_ROOT='/root/data/mscoco'
 SYNO_ZIP="${DATA_ROOT}/zips"
 
 # Specify MSCOCO dataset year
