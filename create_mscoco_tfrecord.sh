@@ -2,23 +2,23 @@
 
 # Specify data root and Syno mount point
 DATA_ROOT="/root/data/mscoco"
-SYNO_ZIP="${DATA_ROOT}/zips"
+DATA_ZIP="${DATA_ROOT}/zips"
 
 # Specify MSCOCO dataset year
 YEAR="2014"
 
 # Get data from MSCOCO
-if [ ! -d "${SYNO_ZIP}" ]; then 
-  echo "$(mkdir -p ${SYNO_ZIP})" ;
+if [ ! -d "${DATA_ZIP}" ]; then 
+  echo "$(mkdir -p ${DATA_ZIP})" ;
 fi  && \
 
 URL_TRAIN="http://images.cocodataset.org/zips/train${YEAR}.zip"
-URL_VAL="http://images.cocodataset.org/zips/train${YEAR}.zip"
-URL_ANNO="http://images.cocodataset.org/zips/train${YEAR}.zip"
+URL_VAL="http://images.cocodataset.org/zips/val${YEAR}.zip"
+URL_ANNO="http://images.cocodataset.org/zips/annotations_trainval${YEAR}.zip"
 
-wget "${URL_TRAIN}" -O "${SYNO_ZIP}" && \
-wget "${URL_VAL}" -O "${SYNO_ZIP}" && \
-wget "${URL_ANNO}" -O "${SYNO_ZIP}" && \
+wget "${URL_TRAIN}" -O "${DATA_ZIP}/train${YEAR}.zip" && \
+wget "${URL_VAL}" -O "${DATA_ZIP}/val${YEAR}.zip" && \
+wget "${URL_ANNO}" -O "${DATA_ZIP}/annotations_trainval${YEAR}.zip" && \
 
 # Construct arguments to pass to python
 ARGS="--data_root=${DATA_ROOT} --output_root=${DATA_ROOT} --year=${YEAR} "
@@ -31,9 +31,9 @@ if [ ! -d "/root/data/scripts/cocoapi" ]; then
 fi  && \
 
 # Unzip data located on Syno to local directories
-echo "$(unzip ${SYNO_ZIP}/val${YEAR}.zip -d ${DATA_ROOT})" && \
-echo "$(unzip ${SYNO_ZIP}/train${YEAR}.zip -d ${DATA_ROOT})" && \
-echo "$(unzip ${SYNO_ZIP}/annotations_trainval${YEAR}.zip -d ${DATA_ROOT})" && \
+echo "$(unzip ${DATA_ZIP}/val${YEAR}.zip -d ${DATA_ROOT})" && \
+echo "$(unzip ${DATA_ZIP}/train${YEAR}.zip -d ${DATA_ROOT})" && \
+echo "$(unzip ${DATA_ZIP}/annotations_trainval${YEAR}.zip -d ${DATA_ROOT})" && \
 
 # Create TF Records
 echo "$(python ./create_mscoco_tf_record.py ${ARGS})"
