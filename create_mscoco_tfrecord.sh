@@ -36,7 +36,7 @@ echo "$(unzip ${DATA_ZIP}/train${YEAR}.zip -d ${DATA_ROOT})" && \
 echo "$(unzip ${DATA_ZIP}/annotations_trainval${YEAR}.zip -d ${DATA_ROOT})" && \
 
 # Create TF Records
-echo "$(python ./create_mscoco_tf_record.py ${ARGS})"
+echo "$(python ./create_mscoco_tfrecord.py ${ARGS})"
 
 # Remove temporary local directories
 echo "$(rm -rf ${DATA_ROOT}/train${YEAR})"
