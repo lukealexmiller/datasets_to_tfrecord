@@ -9,7 +9,7 @@ YEAR='2014'
 
 # Get data from MSCOCO
 if [ ! -d "${SYNO_ZIP}" ]; then 
-  echo "$(mkdir ${SYNO_ZIP})" && \
+  echo "$(mkdir -p ${SYNO_ZIP})" && \
   echo "$(wget http://images.cocodataset.org/zips/train${YEAR}.zip -O ${SYNO_ZIP})" && \
   echo "$(wget http://images.cocodataset.org/zips/val${YEAR}.zip -O ${SYNO_ZIP})" && \
   echo "$(wget http://images.cocodataset.org/zips/annotations_trainval${YEAR}.zip -O ${SYNO_ZIP})" ;
