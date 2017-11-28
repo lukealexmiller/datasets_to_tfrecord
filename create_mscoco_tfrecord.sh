@@ -8,9 +8,12 @@ SYNO_ZIP="${DATA_ROOT}/zips"
 YEAR='2014'
 
 # Get data from MSCOCO
-echo "$(wget http://images.cocodataset.org/zips/train${YEAR}.zip -O ${SYNO_ZIP})" && \
-echo "$(wget http://images.cocodataset.org/zips/val${YEAR}.zip -O ${SYNO_ZIP})" && \
-echo "$(wget http://images.cocodataset.org/zips/annotations_trainval${YEAR}.zip -O ${SYNO_ZIP})" && \
+if [ ! -d "${SYNO_ZIP}" ]; then 
+  echo "$(mkdir ${SYNO_ZIP})" && \
+  echo "$(wget http://images.cocodataset.org/zips/train${YEAR}.zip -O ${SYNO_ZIP})" && \
+  echo "$(wget http://images.cocodataset.org/zips/val${YEAR}.zip -O ${SYNO_ZIP})" && \
+  echo "$(wget http://images.cocodataset.org/zips/annotations_trainval${YEAR}.zip -O ${SYNO_ZIP})" && \
+fi  && \
 
 # Construct arguments to pass to python
 ARGS="--data_root=${DATA_ROOT} --output_root=${DATA_ROOT} --year=${YEAR} "
