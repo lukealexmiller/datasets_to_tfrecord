@@ -64,7 +64,7 @@ matplotlib.use('agg')
 
 # Append to pycocotools to the current path inside Docker.
 import os, sys
-sys.path.append('/root/scripts/cocoapi/PythonAPI')
+sys.path.append('/data/scripts/cocoapi/PythonAPI')
 
 from pycocotools.coco import COCO
 from PIL import Image
@@ -81,10 +81,10 @@ from object_detection.utils import dataset_util
 
 tf.flags.DEFINE_string("year", "2014", "MSCOCO dataset year.")
 
-tf.flags.DEFINE_string("data_root", "/root/data/raw/mscoco", 
+tf.flags.DEFINE_string("data_root", "/data/raw/mscoco", 
                        "Root directory to raw Microsoft COCO dataset.")
 
-tf.flags.DEFINE_string("output_root", "/root/data/raw/mscoco", 
+tf.flags.DEFINE_string("output_root", "/data/raw/mscoco", 
                        "Output data directory.")
 
 tf.flags.DEFINE_bool("shuffle", True, "Toggle shuffling of data within dataset.")

@@ -1,6 +1,6 @@
 #!/bin/sh
-echo "Cloning cocoapi into /root/scripts" && \
-cd /root/scripts && \
+echo "Cloning cocoapi into /data/scripts" && \
+cd /data/scripts && \
 git clone https://github.com/cocodataset/cocoapi && \
 cd  cocoapi/PythonAPI/ && \
 pip install Cython && \
