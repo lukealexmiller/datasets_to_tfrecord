@@ -8,9 +8,9 @@ SYNO_ZIP="${DATA_ROOT}/zips"
 YEAR='2014'
 
 # Get data from MSCOCO
-echo "wget http://images.cocodataset.org/zips/train${YEAR}.zip -O ${SYNO_ZIP}" && \
-echo "wget http://images.cocodataset.org/zips/val${YEAR}.zip -O ${SYNO_ZIP}" && \
-echo "wget http://images.cocodataset.org/zips/annotations_trainval${YEAR}.zip -O ${SYNO_ZIP}" && \
+echo "$(wget http://images.cocodataset.org/zips/train${YEAR}.zip -O ${SYNO_ZIP})" && \
+echo "$(wget http://images.cocodataset.org/zips/val${YEAR}.zip -O ${SYNO_ZIP})" && \
+echo "$(wget http://images.cocodataset.org/zips/annotations_trainval${YEAR}.zip -O ${SYNO_ZIP})" && \
 
 # Construct arguments to pass to python
 ARGS="--data_root=${DATA_ROOT} --output_root=${DATA_ROOT} --year=${YEAR} "
@@ -18,7 +18,7 @@ ARGS+="--shuffle=True --num_val=8000 --train_shards=64 --val_shards=4 --test_sha
 
 # Install MSCOCO API
 if [ ! -d "/root/data/scripts/cocoapi" ]; then 
-  echo "chmod +x install_mscoco_api.sh" && \
+  echo "$(chmod +x install_mscoco_api.sh)" && \
   ./install_mscoco_api.sh ; 
 fi  && \
 
