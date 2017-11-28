@@ -18,7 +18,7 @@ ARGS+="--shuffle=True --num_val=8000 --train_shards=64 --val_shards=4 --test_sha
 
 # Install MSCOCO API
 if [ ! -d "/root/data/scripts/cocoapi" ]; then 
-  echo "chmod +x filename.sh"
+  echo "chmod +x ./install_mscoco_api.sh"
   ./install_mscoco_api.sh ; 
 fi  && \
 
