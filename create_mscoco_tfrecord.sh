@@ -14,10 +14,10 @@ fi  && \
 
 URL_TRAIN="http://images.cocodataset.org/zips/train${YEAR}.zip"
 URL_VAL="http://images.cocodataset.org/zips/val${YEAR}.zip"
-URL_ANNO="http://images.cocodataset.org/zips/annotations_trainval${YEAR}.zip"
+URL_ANNO="http://images.cocodataset.org/annotations/annotations_trainval${YEAR}.zip"
 
-wget "${URL_TRAIN}" -O "${DATA_ZIP}/train${YEAR}.zip" && \
-wget "${URL_VAL}" -O "${DATA_ZIP}/val${YEAR}.zip" && \
+#wget "${URL_TRAIN}" -O "${DATA_ZIP}/train${YEAR}.zip" && \
+#wget "${URL_VAL}" -O "${DATA_ZIP}/val${YEAR}.zip" && \
 wget "${URL_ANNO}" -O "${DATA_ZIP}/annotations_trainval${YEAR}.zip" && \
 
 # Construct arguments to pass to python
@@ -31,8 +31,8 @@ if [ ! -d "/root/data/scripts/cocoapi" ]; then
 fi  && \
 
 # Unzip data located on Syno to local directories
-echo "$(unzip ${DATA_ZIP}/val${YEAR}.zip -d ${DATA_ROOT})" && \
-echo "$(unzip ${DATA_ZIP}/train${YEAR}.zip -d ${DATA_ROOT})" && \
+#echo "$(unzip ${DATA_ZIP}/val${YEAR}.zip -d ${DATA_ROOT})" && \
+#echo "$(unzip ${DATA_ZIP}/train${YEAR}.zip -d ${DATA_ROOT})" && \
 echo "$(unzip ${DATA_ZIP}/annotations_trainval${YEAR}.zip -d ${DATA_ROOT})" && \
 
 # Create TF Records
