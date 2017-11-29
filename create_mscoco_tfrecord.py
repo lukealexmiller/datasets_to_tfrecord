@@ -81,10 +81,10 @@ from object_detection.utils import dataset_util
 
 tf.flags.DEFINE_string("year", "2014", "MSCOCO dataset year.")
 
-tf.flags.DEFINE_string("data_root", "/root/data/raw/mscoco", 
-                       "Root directory to raw Microsoft COCO dataset.")
+tf.flags.DEFINE_string("data_root", "/root/data/mscoco", 
+                       "Root directory to Microsoft COCO dataset.")
 
-tf.flags.DEFINE_string("output_root", "/root/data/raw/mscoco", 
+tf.flags.DEFINE_string("output_root", "/root/data/mscoco", 
                        "Output data directory.")
 
 tf.flags.DEFINE_bool("shuffle", True, "Toggle shuffling of data within dataset.")
