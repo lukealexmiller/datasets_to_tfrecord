@@ -16,9 +16,9 @@ URL_TRAIN="http://images.cocodataset.org/zips/train${YEAR}.zip"
 URL_VAL="http://images.cocodataset.org/zips/val${YEAR}.zip"
 URL_ANNO="http://images.cocodataset.org/annotations/annotations_trainval${YEAR}.zip"
 
-#wget "${URL_TRAIN}" -O "${DATA_ZIP}/train${YEAR}.zip" && \
-#wget "${URL_VAL}" -O "${DATA_ZIP}/val${YEAR}.zip" && \
-#wget "${URL_ANNO}" -O "${DATA_ZIP}/annotations_trainval${YEAR}.zip" && \
+wget "${URL_TRAIN}" -O "${DATA_ZIP}/train${YEAR}.zip" && \
+wget "${URL_VAL}" -O "${DATA_ZIP}/val${YEAR}.zip" && \
+wget "${URL_ANNO}" -O "${DATA_ZIP}/annotations_trainval${YEAR}.zip" && \
 
 # Construct arguments to pass to python
 ARGS="--data_root=${DATA_ROOT} --output_root=${DATA_ROOT} --year=${YEAR} "
