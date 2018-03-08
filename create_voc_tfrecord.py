@@ -12,9 +12,9 @@ from datetime import datetime
 import numpy as np
 import tensorflow as tf
 
-sys.path.append('/home/lukealexmiller/cartwatch/cartwatch-preseeding/code/models/research')
+# sys.path.append('/home/lukealexmiller/cartwatch/cartwatch-preseeding/code/models/research')
 
-from object_detection.utils import dataset_util
+import dataset_util
 
 tf.flags.DEFINE_string("output_root", "/home/lukealexmiller/tmp/HollywoodHeads",
                        "Output data directory.")

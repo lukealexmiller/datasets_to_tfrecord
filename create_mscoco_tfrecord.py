@@ -77,7 +77,7 @@ import logging
 from datetime import datetime
 import threading
 
-import dataset_util
+from object_detection.utils import dataset_util
 
 tf.flags.DEFINE_string("year", "2014", "MSCOCO dataset year.")
 
