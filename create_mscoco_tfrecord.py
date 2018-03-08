@@ -1,6 +1,6 @@
 """Converts MSCOCO data to TFRecord file format with Example protos.
 
-The MSCOCO images are expected to reside in JPEG files located in the 
+The MSCOCO images are expected to reside in JPEG files located in the
 directory structure as given by extracting the MSCOCO zip files:
 
   train2014/COCO_train2014_000000000151.jpg
@@ -51,7 +51,7 @@ is a serialized Example proto consisting of precisely one image and its associat
 bounding box annotations.
 
 NOTE: To use this script, you must install the  MSCOCO API by
-executing the 'install_mscoco_api.sh' file. 
+executing the 'install_mscoco_api.sh' file.
 """
 
 from __future__ import absolute_import
@@ -77,14 +77,14 @@ import logging
 from datetime import datetime
 import threading
 
-from object_detection.utils import dataset_util
+import dataset_util
 
 tf.flags.DEFINE_string("year", "2014", "MSCOCO dataset year.")
 
-tf.flags.DEFINE_string("data_root", "/root/data/mscoco", 
+tf.flags.DEFINE_string("data_root", "/root/data/mscoco",
                        "Root directory to Microsoft COCO dataset.")
 
-tf.flags.DEFINE_string("output_root", "/root/data/mscoco", 
+tf.flags.DEFINE_string("output_root", "/root/data/mscoco",
                        "Output data directory.")
 
 tf.flags.DEFINE_bool("shuffle", True, "Toggle shuffling of data within dataset.")
@@ -117,7 +117,7 @@ def load_mscoco_detection_dataset(img_dir, anno_path, shuffle_img=True):
       coco_data: list of dictionary-formatted data for each image
   """
   coco = COCO(anno_path)
-  img_ids = coco.getImgIds() 
+  img_ids = coco.getImgIds()
   # [0,12,26,29,30,45,66,68,69,71,83] are missing (feature of MSCOCO dataset)
   cat_ids = coco.getCatIds()
 
@@ -135,7 +135,7 @@ def load_mscoco_detection_dataset(img_dir, anno_path, shuffle_img=True):
     img_info = {}
     bboxes = []
     labels = []
-    
+
     img_detail = coco.loadImgs(img_id)[0]
     pic_height = img_detail['height']
     pic_width = img_detail['width']
@@ -149,19 +149,19 @@ def load_mscoco_detection_dataset(img_dir, anno_path, shuffle_img=True):
                      bboxes_data[1]/float(pic_height),\
                      bboxes_data[2]/float(pic_width), \
                      bboxes_data[3]/float(pic_height)]
-      
+
       bboxes.append(bboxes_data)
       labels.append(ann['category_id'])
-    
+
     img_path = os.path.join(img_dir, img_detail['file_name'])
     img_bytes = tf.gfile.FastGFile(img_path,'rb').read()
-    
+
     img_info['pixel_data'] = img_bytes
     img_info['height'] = pic_height
     img_info['width'] = pic_width
     img_info['bboxes'] = bboxes
     img_info['labels'] = labels
-    
+
     coco_data.append(img_info)
   return coco_data
 
@@ -312,10 +312,10 @@ def main(unused_argv):
   coco_data = {}
   for dataset in datasets:
     img_dir = os.path.join(FLAGS.data_root, dataset+FLAGS.year)
-    anno_path = os.path.join(FLAGS.data_root, 'annotations', 
+    anno_path = os.path.join(FLAGS.data_root, 'annotations',
                              'instances_{:s}.json').format(dataset+FLAGS.year)
 
-    coco_data[dataset] = load_mscoco_detection_dataset(img_dir, anno_path, 
+    coco_data[dataset] = load_mscoco_detection_dataset(img_dir, anno_path,
                                                    shuffle_img=FLAGS.shuffle)
 
   # Redistribute the MSCOCO data.
